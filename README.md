@@ -37,11 +37,13 @@ Then we used pyttsx3 to convert the translated speech into audio to be displayed
 We also uploaded the code on raspberry pi and connected it with a microphone and speaker to receive the voice and translate it with the code the send the translated text to the speaker to make the audio more loud and clear.
 
 >
+Excution file and GUI
+(https://drive.google.com/drive/u/0/folders/1_ejUxTWDhGhVc-Q-zVKF3TLLwPxvgPoQ)
 
 🚀 About Me
 
-I'm a full stack ML & DL developer
+Assistant Lecturer || MSc. || Machine Learning Eng. & Researcher || AI | ML
 
 🔗 Links
 
-[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/dina-mohammed-b695aa216/)
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/omarsesa/)
