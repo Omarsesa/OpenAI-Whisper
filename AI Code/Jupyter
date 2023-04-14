@@ -1,0 +1,120 @@
+
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[30]:
+
+
+get_ipython().system('pip install git+https://github.com/openai/whisper.git')
+get_ipython().system(' pip install jiwer')
+
+
+
+
+# In[41]:
+
+
+model = whisper.load_model("base", device=DEVICE)
+print(
+    f"Model is {'multilingual' if model.is_multilingual else 'English-only'} "
+    f"and has {sum(np.prod(p.shape) for p in model.parameters()):,} parameters."
+)
+
+
+# In[44]:
+
+
+get_ipython().system('pip3 install sounddevice')
+get_ipython().system('pip3 install wavio')
+get_ipython().system('pip3 install scipy')
+
+
+# In[47]:
+
+
+import sounddevice as sd
+from scipy.io.wavfile import write
+import wavio as wv
+  
+# Sampling frequency
+freq = 44100
+  
+# Recording duration
+duration = 5
+  
+# Start recorder with the given values 
+# of duration and sample frequency
+recording = sd.rec(int(duration * freq), 
+                   samplerate=freq, channels=2)
+  
+# Record audio for the given number of seconds
+sd.wait(10)
+  
+# This will convert the NumPy array to an audio
+# file with the given sampling frequency
+write("recording0.wav", freq, recording)
+  
+# Convert the NumPy array to audio file
+wv.write("recording1.wav", recording, freq, sampwidth=2)
+
+
+# In[35]:
+
+
+import whisper
+import os
+import numpy as np
+import torch
+
+
+# In[36]:
+
+
+torch.cuda.is_available()
+DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
+
+
+# In[48]:
+
+
+audio = whisper.load_audio("recording0.wav")
+audio = whisper.pad_or_trim(audio)
+mel = whisper.log_mel_spectrogram(audio).to(model.device)
+
+
+# In[49]:
+
+
+_, probs = model.detect_language(mel)
+print(f"Detected language: {max(probs, key=probs.get)}")
+
+
+# In[39]:
+
+
+get_ipython().system(' pip install pyttsx3')
+
+
+# In[50]:
+
+
+options = whisper.DecodingOptions(language="en", without_timestamps=True, fp16 = False)
+result = whisper.decode(model, mel, options)
+import pyttsx3
+text_speech=pyttsx3.init()
+text_speech.say(result.text)
+text_speech.runAndWait()
+print(result.text)
+
+
+# In[51]:
+
+
+result = model.transcribe("recording0.wav")
+print(result["text"])
+
+
+
+
+
+
