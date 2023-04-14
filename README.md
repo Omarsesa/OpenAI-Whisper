@@ -36,9 +36,7 @@ Then we used  Torch framework, which works with extensive support for machine le
 Then we used pyttsx3 to convert the translated speech into audio to be displayed on the speakers
 We also uploaded the code on raspberry pi and connected it with a microphone and speaker to receive the voice and translate it with the code the send the translated text to the speaker to make the audio more loud and clear.
 
->
-Excution file and GUI
-(https://drive.google.com/drive/u/0/folders/1_ejUxTWDhGhVc-Q-zVKF3TLLwPxvgPoQ)
+
 
 🚀 About Me
 
